@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulir Aplikasi Mahasiswa Baru STIKMI 2024/2025</title>
+<style id="inline-css">
+/* ===== Global Reset & Variables ===== */
+:root {
+  --primary: #1e3a8a;
+  --primary-dark: #172554;
+  --accent: #d4af37;
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --radius: 12px;
+  --shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", "Noto Sans", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ===== Header ===== */
+.site-header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 18px;
+}
+.site-header .brand .logo {
+  width: 38px; height: 38px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: var(--primary-dark);
+  font-weight: 800;
+  font-size: 16px;
+}
+.site-header nav { display: flex; gap: 8px; flex-wrap: wrap; }
+.site-header nav a {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: background .2s;
+}
+.site-header nav a:hover { background: rgba(255,255,255,.15); }
+.site-header nav a.active { background: var(--accent); color: var(--primary-dark); font-weight: 600; }
+
+/* ===== Hero / Landing ===== */
+.hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #312e81 60%, #4c1d95 100%);
+  color: #fff;
+  padding: 70px 24px 90px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -40px; left: 0; right: 0; height: 80px;
+  background: var(--bg);
+  clip-path: ellipse(60% 100% at 50% 100%);
+}
+.hero h1 { font-size: 36px; margin-bottom: 12px; letter-spacing: .5px; }
+.hero p { max-width: 720px; margin: 0 auto; opacity: .92; font-size: 17px; }
+
+/* ===== Cards Grid (Landing) ===== */
+.form-grid {
+  max-width: 1100px;
+  margin: -50px auto 40px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  position: relative;
+  z-index: 2;
+}
+.form-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  box-shadow: var(--shadow-lg);
+  border-top: 4px solid var(--accent);
+  transition: transform .2s, box-shadow .2s;
+  display: flex;
+  flex-direction: column;
+}
+.form-card:hover { transform: translateY(-4px); }
+.form-card .icon {
+  width: 54px; height: 54px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  font-size: 26px;
+  background: linear-gradient(135deg, var(--primary), #312e81);
+  color: #fff;
+  margin-bottom: 16px;
+}
+.form-card h3 { font-size: 20px; margin-bottom: 8px; color: var(--primary-dark); }
+.form-card .level {
+  display: inline-block;
+  background: #ede9fe;
+  color: #5b21b6;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.form-card p { color: var(--muted); font-size: 14px; flex-grow: 1; margin-bottom: 18px; }
+.form-card .btn { align-self: flex-start; }
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+}
+.btn:hover { background: var(--primary-dark); }
+.btn:active { transform: scale(.98); }
+.btn-accent { background: var(--accent); color: var(--primary-dark); }
+.btn-accent:hover { background: #b8941f; }
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+.btn-outline:hover { background: var(--primary); color: #fff; }
+.btn-block { display: flex; width: 100%; justify-content: center; }
+.btn-lg { padding: 13px 28px; font-size: 16px; }
+
+/* ===== Form Layout ===== */
+.form-wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+.form-card-section {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+.form-card-section h2 {
+  font-size: 18px;
+  color: var(--primary-dark);
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+  margin-bottom: 6px;
+}
+.form-card-section .section-desc {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+/* ===== Form Fields ===== */
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #374151;
+}
+.field label .req { color: var(--danger); }
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field input[type="number"],
+.field input[type="date"],
+.field input[type="password"],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, .12);
+}
+.field textarea { resize: vertical; min-height: 80px; }
+.field .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.field input[type="file"] { font-size: 13px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 640px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* radio / checkbox groups */
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+}
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background .15s, border-color .15s;
+}
+.check-item:hover { background: #f9fafb; }
+.check-item input { accent-color: var(--primary); width: 16px; height: 16px; }
+.check-item:has(input:checked) {
+  background: #eef2ff;
+  border-color: var(--primary);
+  font-weight: 600;
+}
+
+.radio-row { display: flex; gap: 18px; flex-wrap: wrap; }
+.radio-row label {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 400; cursor: pointer;
+}
+.radio-row input { accent-color: var(--primary); width: 16px; height: 16px; }
+
+/* ===== Form Hero (per-jenjang) ===== */
+.form-hero {
+  background: linear-gradient(135deg, var(--hero-from, #1e3a8a) 0%, var(--hero-to, #312e81) 100%);
+  color: #fff;
+  padding: 48px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.form-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.12) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,.08) 0, transparent 45%);
+  pointer-events: none;
+}
+.form-hero::after {
+  content: "";
+  position: absolute;
+  bottom: -40px; left: 0; right: 0; height: 80px;
+  background: var(--bg);
+  clip-path: ellipse(60% 100% at 50% 100%);
+}
+.form-hero .hero-icon {
+  width: 84px; height: 84px;
+  border-radius: 24px;
+  background: rgba(255,255,255,.18);
+  display: grid; place-items: center;
+  font-size: 42px;
+  margin: 0 auto 18px;
+  border: 1px solid rgba(255,255,255,.25);
+  position: relative;
+  z-index: 1;
+}
+.form-hero h1 {
+  font-size: 28px;
+  letter-spacing: .5px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+.form-hero .subtitle {
+  font-size: 15px;
+  opacity: .92;
+  max-width: 640px;
+  margin: 0 auto 14px;
+  position: relative;
+  z-index: 1;
+}
+.form-hero .badge-row {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.form-hero .pill {
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.3);
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ===== Progress indicator (form) ===== */
+.form-progress {
+  max-width: 920px;
+  margin: -50px auto 24px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+.form-progress .track {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.form-progress .step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 110px;
+}
+.form-progress .step .dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--muted);
+  display: grid; place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.form-progress .step .label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.form-progress .step.active .dot {
+  background: var(--hero-from, var(--primary));
+  color: #fff;
+}
+.form-progress .step.active .label {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+.form-progress .step.done .dot {
+  background: var(--success);
+  color: #fff;
+}
+.form-progress .sep {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 2px;
+  background: var(--border);
+}
+
+/* ===== Form Title Block (compact) ===== */
+.form-title { text-align: center; margin-bottom: 24px; }
+.form-title h1 { color: var(--primary-dark); font-size: 26px; margin-bottom: 6px; }
+.form-title p { color: var(--muted); font-size: 14px; }
+
+/* ===== Alerts ===== */
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  display: none;
+}
+.alert.show { display: block; }
+.alert-success { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.alert-error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+.alert-info { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+
+/* ===== Loading Spinner ===== */
+.spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== Footer ===== */
+.site-footer {
+  background: var(--primary-dark);
+  color: #cbd5e1;
+  text-align: center;
+  padding: 22px;
+  font-size: 13px;
+  margin-top: 40px;
+}
+.site-footer a { color: var(--accent); }
+
+/* ===== Admin Page ===== */
+.admin-login {
+  max-width: 380px;
+  margin: 80px auto;
+  background: var(--card);
+  padding: 32px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+.admin-login h2 { text-align: center; margin-bottom: 18px; color: var(--primary-dark); }
+
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.admin-toolbar .filter {
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+}
+.admin-toolbar select, .admin-toolbar input {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+}
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.stat-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--accent);
+}
+.stat-card .num { font-size: 28px; font-weight: 700; color: var(--primary-dark); }
+.stat-card .lbl { font-size: 13px; color: var(--muted); }
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  font-size: 13px;
+}
+table.data-table th {
+  background: var(--primary-dark);
+  color: #fff;
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+table.data-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+table.data-table tr:hover td { background: #f9fafb; }
+table.data-table tr:last-child td { border-bottom: none; }
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.tag-smj { background: #dbeafe; color: #1e40af; }
+.tag-smkm { background: #fce7f3; color: #9d174d; }
+.tag-stikmi { background: #dcfce7; color: #166534; }
+
+/* table scroll */
+.table-wrap { overflow-x: auto; }
+
+/* detail modal */
+.modal {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+}
+.modal.show { display: block; }
+.modal-box {
+  background: var(--card);
+  max-width: 700px;
+  margin: 30px auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.modal-head {
+  padding: 16px 22px;
+  background: var(--primary-dark);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-head h3 { font-size: 17px; }
+.modal-close {
+  background: rgba(255,255,255,.15);
+  border: none; color: #fff;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+.modal-body { padding: 22px; max-height: 70vh; overflow-y: auto; }
+.modal-body dl { display: grid; grid-template-columns: 200px 1fr; gap: 8px 16px; font-size: 13px; }
+.modal-body dt { color: var(--muted); font-weight: 600; }
+.modal-body dd { word-break: break-word; }
+
+/* misc */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+}
+.empty-state .ico { font-size: 48px; margin-bottom: 12px; }
+
+.note-box {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-left: 4px solid #f59e0b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #92400e;
+  margin-bottom: 18px;
+}
+
+.signature-line {
+  border-top: 1px dashed var(--border);
+  margin-top: 24px;
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.sig-block { text-align: center; min-width: 180px; }
+.sig-block .place { font-size: 13px; color: var(--muted); margin-bottom: 60px; }
+.sig-block .name-line { border-top: 1px solid #333; padding-top: 4px; font-size: 13px; }
+
+</style>
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <div class="logo">YMJ</div>
+    <span>Formulir STIKMI</span>
+  </div>
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="form-smj.html">SMJ</a>
+    <a href="form-smkm.html">SMKM</a>
+    <a href="form-stikmi.html">STIKMI</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+</header>
+
+<main class="form-wrap" style="--hero-from:#065f46; --hero-to:#064e3b;">
+
+  <section class="form-hero">
+    <div class="hero-icon">🏛️</div>
+    <h1>STIKMI · Mahasiswa Baru 2024/2025</h1>
+    <p class="subtitle">Sekolah Tinggi Ilmu Kesenian Musik Indonesia. Program Studi S-1 Seni Musik dengan 6 peminatan konsentrasi.</p>
+    <div class="badge-row">
+      <span class="pill">🎼 Classical</span>
+      <span class="pill">🎷 Pop/Jazz</span>
+      <span class="pill">🎓 Education</span>
+      <span class="pill">🎹 Composition</span>
+      <span class="pill">🎼 Conducting</span>
+      <span class="pill">🎚️ Music Tech</span>
+    </div>
+  </section>
+
+  <div class="form-progress">
+    <div class="track">
+      <div class="step active"><div class="dot">1</div><div class="label">Aplikasi</div></div>
+      <div class="sep"></div>
+      <div class="step"><div class="dot">2</div><div class="label">Data Diri</div></div>
+      <div class="sep"></div>
+      <div class="step"><div class="dot">3</div><div class="label">Ortu/Wali</div></div>
+      <div class="sep"></div>
+      <div class="step"><div class="dot">4</div><div class="label">Riwayat</div></div>
+      <div class="sep"></div>
+      <div class="step"><div class="dot">5</div><div class="label">Audisi</div></div>
+      <div class="sep"></div>
+      <div class="step"><div class="dot">6</div><div class="label">Kirim</div></div>
+    </div>
+  </div>
+
+  <div id="alertBox"></div>
+
+  <form id="formStikmi" autocomplete="on">
+
+    <!-- Bagian diisi petugas -->
+    <section class="form-card-section">
+      <h2>Data Aplikasi</h2>
+      <p class="section-desc">Bagian "diisi petugas" boleh dikosongkan oleh pendaftar.</p>
+      <div class="grid-2">
+        <div class="field">
+          <label>No. Audisi <span style="color:var(--muted); font-weight:400; font-size:11px;">(diisi petugas)</span></label>
+          <input type="text" name="no_audisi">
+        </div>
+        <div class="field">
+          <label>Instrumen Mayor</label>
+          <input type="text" name="instrumen_mayor">
+        </div>
+      </div>
+      <div class="field">
+        <label>Program Studi</label>
+        <input type="text" name="program_studi" value="S-1 Seni Musik" readonly style="background:#f3f4f6;">
+      </div>
+      <div class="field">
+        <label>Peminatan Konsentrasi <span style="font-size:12px; color:var(--muted);">(max. 2)</span> <span class="req">*</span></label>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="konsentrasi" value="Classical Performance"> Classical Performance</label>
+          <label class="check-item"><input type="checkbox" name="konsentrasi" value="Pop/Jazz Performance"> Pop/Jazz Performance</label>
+          <label class="check-item"><input type="checkbox" name="konsentrasi" value="Education"> Education</label>
+          <label class="check-item"><input type="checkbox" name="konsentrasi" value="Composition"> Composition</label>
+          <label class="check-item"><input type="checkbox" name="konsentrasi" value="Conducting"> Conducting</label>
+          <label class="check-item"><input type="checkbox" name="konsentrasi" value="Music Technology"> Music Technology</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Peminatan Program <span class="req">*</span></label>
+        <div class="radio-row">
+          <label><input type="radio" name="peminatan_program" value="Double Degree" required> Double Degree</label>
+          <label><input type="radio" name="peminatan_program" value="Regular Degree"> Regular Degree</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Diri Mahasiswa -->
+    <section class="form-card-section">
+      <h2>Data Diri Mahasiswa</h2>
+      <div class="field">
+        <label>Nama Lengkap <span class="req">*</span></label>
+        <input type="text" name="nama_lengkap" required>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Tempat Lahir <span class="req">*</span></label>
+          <input type="text" name="tempat_lahir" required>
+        </div>
+        <div class="field">
+          <label>Tanggal Lahir <span class="req">*</span></label>
+          <input type="date" name="tanggal_lahir" required>
+        </div>
+      </div>
+      <div class="field">
+        <label>Agama</label>
+        <select name="agama">
+          <option value="">- Pilih -</option>
+          <option>Islam</option><option>Kristen</option><option>Katolik</option>
+          <option>Hindu</option><option>Buddha</option><option>Konghucu</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Alamat <span class="req">*</span></label>
+        <textarea name="alamat" required></textarea>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Kabupaten/Kota</label>
+          <input type="text" name="kabupaten_kota">
+        </div>
+        <div class="field">
+          <label>Provinsi</label>
+          <input type="text" name="provinsi">
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="field">
+          <label>Kode Pos</label>
+          <input type="text" name="kode_pos">
+        </div>
+        <div class="field">
+          <label>Nomor Telepon Rumah</label>
+          <input type="tel" name="telp_rumah">
+        </div>
+        <div class="field">
+          <label>HP <span class="req">*</span></label>
+          <input type="tel" name="hp" required>
+        </div>
+      </div>
+      <div class="field">
+        <label>Alamat Email <span class="req">*</span></label>
+        <input type="email" name="email" required>
+      </div>
+    </section>
+
+    <!-- Data Orang Tua/Wali -->
+    <section class="form-card-section">
+      <h2>Data Orang Tua / Wali</h2>
+      <div class="field">
+        <label>Nama Orang Tua/Wali</label>
+        <input type="text" name="nama_ortu_wali">
+      </div>
+      <div class="field">
+        <label>Pekerjaan Orang Tua/Wali</label>
+        <input type="text" name="pekerjaan_ortu_wali">
+      </div>
+      <div class="field">
+        <label>Alamat <span style="font-size:11px; color:var(--muted);">(kosongkan jika sama dengan alamat mahasiswa)</span></label>
+        <textarea name="alamat_ortu_wali"></textarea>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Kabupaten/Kota</label>
+          <input type="text" name="ortu_kabupaten_kota">
+        </div>
+        <div class="field">
+          <label>Provinsi</label>
+          <input type="text" name="ortu_provinsi">
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="field">
+          <label>Kode Pos</label>
+          <input type="text" name="ortu_kode_pos">
+        </div>
+        <div class="field">
+          <label>Telpon Rumah</label>
+          <input type="tel" name="ortu_telp_rumah">
+        </div>
+        <div class="field">
+          <label>HP</label>
+          <input type="tel" name="ortu_hp">
+        </div>
+      </div>
+      <div class="field">
+        <label>Alamat Email</label>
+        <input type="email" name="ortu_email">
+      </div>
+      <div class="field">
+        <label>Penghasilan Orang Tua <span class="req">*</span></label>
+        <div class="radio-row">
+          <label><input type="radio" name="penghasilan_ortu" value="< Rp 10.000.000/bulan" required> &lt; Rp 10.000.000/bulan</label>
+          <label><input type="radio" name="penghasilan_ortu" value="> Rp 10.000.000/bulan"> &gt; Rp 10.000.000/bulan</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Riwayat Pendidikan Formal -->
+    <section class="form-card-section">
+      <h2>Riwayat Pendidikan Formal</h2>
+      <div class="grid-2">
+        <div class="field">
+          <label>Tahun Lulus SMA</label>
+          <input type="text" name="tahun_lulus_sma" placeholder="cth: 2024">
+        </div>
+        <div class="field">
+          <label>Jurusan SMA</label>
+          <input type="text" name="jurusan_sma">
+        </div>
+      </div>
+      <div class="field">
+        <label>Nama SMA</label>
+        <input type="text" name="nama_sma">
+      </div>
+      <div class="field">
+        <label>Alamat SMA</label>
+        <textarea name="alamat_sma"></textarea>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Kabupaten/Kota</label>
+          <input type="text" name="sma_kabupaten_kota">
+        </div>
+        <div class="field">
+          <label>Provinsi</label>
+          <input type="text" name="sma_provinsi">
+        </div>
+      </div>
+      <div class="field">
+        <label>Kode Pos</label>
+        <input type="text" name="sma_kode_pos">
+      </div>
+      <div class="field">
+        <label>Perguruan Tinggi (jika pernah)</label>
+        <input type="text" name="perguruan_tinggi">
+      </div>
+      <div class="grid-3">
+        <div class="field">
+          <label>Jurusan/Program Studi</label>
+          <input type="text" name="jurusan_pt">
+        </div>
+        <div class="field">
+          <label>Tahun Masuk</label>
+          <input type="text" name="tahun_masuk_pt">
+        </div>
+        <div class="field">
+          <label>Tahun Lulus</label>
+          <input type="text" name="tahun_lulus_pt">
+        </div>
+      </div>
+    </section>
+
+    <!-- Riwayat Pendidikan & Pengalaman Musik -->
+    <section class="form-card-section">
+      <h2>Riwayat Pendidikan dan Pengalaman Musik</h2>
+      <div class="grid-2">
+        <div class="field">
+          <label>Instrumen Mayor</label>
+          <input type="text" name="musik_instrumen_mayor">
+        </div>
+        <div class="field">
+          <label>Lama Belajar</label>
+          <input type="text" name="lama_belajar">
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Tingkat/Grade</label>
+          <input type="text" name="tingkat_grade">
+        </div>
+        <div class="field">
+          <label>Nama Sekolah Musik</label>
+          <input type="text" name="nama_sekolah_musik">
+        </div>
+      </div>
+      <div class="field">
+        <label>Nama Guru</label>
+        <input type="text" name="nama_guru">
+      </div>
+
+      <div class="field">
+        <label>Repertoar yang Pernah Dimainkan</label>
+        <input type="text" name="repertoar_a" placeholder="a." style="margin-bottom:6px;">
+        <input type="text" name="repertoar_b" placeholder="b." style="margin-bottom:6px;">
+        <input type="text" name="repertoar_c" placeholder="c.">
+      </div>
+      <div class="field">
+        <label>Kompetisi/Festival Musik yang Pernah Diikuti</label>
+        <input type="text" name="kompetisi_a" placeholder="a." style="margin-bottom:6px;">
+        <input type="text" name="kompetisi_b" placeholder="b." style="margin-bottom:6px;">
+        <input type="text" name="kompetisi_c" placeholder="c.">
+      </div>
+      <div class="field">
+        <label>Prestasi yang Pernah Diraih di Bidang Musik</label>
+        <input type="text" name="prestasi_a" placeholder="a." style="margin-bottom:6px;">
+        <input type="text" name="prestasi_b" placeholder="b." style="margin-bottom:6px;">
+        <input type="text" name="prestasi_c" placeholder="c.">
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Instrumen Lain yang Dikuasai</label>
+          <input type="text" name="instrumen_lain">
+        </div>
+        <div class="field">
+          <label>Lama Belajar</label>
+          <input type="text" name="lama_belajar_lain">
+        </div>
+      </div>
+    </section>
+
+    <!-- Repertoar / Bahan Audisi -->
+    <section class="form-card-section">
+      <h2>Repertoar / Bahan Audisi</h2>
+      <div class="field">
+        <label>a.</label>
+        <input type="text" name="audisi_a">
+      </div>
+      <div class="field">
+        <label>b.</label>
+        <input type="text" name="audisi_b">
+      </div>
+      <div class="field">
+        <label>c.</label>
+        <input type="text" name="audisi_c">
+      </div>
+    </section>
+
+    <!-- Motivasi -->
+    <section class="form-card-section">
+      <h2>Motivasi Menjadi Mahasiswa STIKMI</h2>
+      <div class="field">
+        <textarea name="motivasi" rows="8" placeholder="Tuliskan motivasi Anda menjadi mahasiswa STIKMI..."></textarea>
+      </div>
+    </section>
+
+    <!-- Pernyataan -->
+    <section class="form-card-section">
+      <h2>Pernyataan</h2>
+      <label class="check-item" style="margin-bottom:12px;">
+        <input type="checkbox" name="pernyataan" required>
+        Saya menyatakan data yang diisi adalah benar dan dapat dipertanggungjawabkan.
+      </label>
+      <div class="grid-2">
+        <div class="field">
+          <label>Tempat</label>
+          <input type="text" name="tempat">
+        </div>
+        <div class="field">
+          <label>Tanggal</label>
+          <input type="date" name="tanggal">
+        </div>
+      </div>
+    </section>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <button type="submit" class="btn btn-lg btn-accent" id="submitBtn">Kirim Pendaftaran</button>
+      <button type="reset" class="btn btn-lg btn-outline">Reset Form</button>
+      <a href="index.html" class="btn btn-lg btn-outline">← Kembali</a>
+    </div>
+
+  </form>
+
+  <div id="successPanel" style="display:none; margin-top:24px;">
+    <div class="form-card-section" style="text-align:center;">
+      <div style="font-size:48px;">✅</div>
+      <h2 style="border:none; padding:0; color:var(--success); font-size:22px; margin:8px 0;">Pendaftaran Berhasil!</h2>
+      <p style="color:var(--muted); margin-bottom:18px;" id="successMsg">Data Anda telah tercatat. Petugas akan menghubungi Anda.</p>
+      <a href="index.html" class="btn">Kembali ke Beranda</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>© <span id="year"></span> STIKMI · Sekolah Tinggi Ilmu Kesenian Musik Indonesia</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Maksimal 2 pilihan konsentrasi
+const konsInputs = document.querySelectorAll('input[name="konsentrasi"]');
+konsInputs.forEach(inp => {
+  inp.addEventListener("change", function() {
+    const checked = document.querySelectorAll('input[name="konsentrasi"]:checked');
+    if (checked.length > 2) {
+      this.checked = false;
+      showAlert("alertBox", "error", "Maksimal 2 peminatan konsentrasi.");
+    }
+  });
+});
+
+document.getElementById("formStikmi").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById("submitBtn");
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Mengirim...';
+
+  try {
+    const data = collectForm(this);
+    const result = await submitToSheet("STIKMI", data);
+
+    document.getElementById("formStikmi").style.display = "none";
+    const panel = document.getElementById("successPanel");
+    panel.style.display = "block";
+    document.getElementById("successMsg").textContent = result.message;
+    panel.scrollIntoView({ behavior: "smooth" });
+  } catch (err) {
+    showAlert("alertBox", "error", "Gagal mengirim: " + err.message);
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
+});
+</script>
+<script id="inline-app">
+/* =========================================================
+   Config & Helper JS — dipakai semua halaman formulir
+   =========================================================
+   CARA PAKAI:
+   1. Deploy Google Apps Script sebagai "Web app" (Execute as Me,
+      Anyone access). Dapatkan URL seperti:
+      https://script.google.com/macros/s/AKfyc.../exec
+   2. Tempel URL itu ke variabel APPS_SCRIPT_URL di bawah.
+   3. Buka kembali halaman — data submit akan otomatis terkirim ke
+      Spreadsheet + dashboard admin.
+   ========================================================= */
+
+// === GANTI DENGAN URL WEB APP APPS SCRIPT ANDA ===
+const APPS_SCRIPT_URL = "PASTE_URL_APPS_SCRIPT_WEB_APP_DISINI";
+
+// Password admin default — JANGAN pakai untuk produksi nyata tanpa
+// mengganti. Disimpan di localStorage client; verifikasi sebenarnya
+// ada di Apps Script (opsional, lihat Code.gs).
+const ADMIN_DEFAULT_PASSWORD = "admin123";
+
+/* ----- Util ----- */
+function $(sel, root = document) { return root.querySelector(sel); }
+function $all(sel, root = document) { return Array.from(root.querySelectorAll(sel)); }
+
+function formatDateID(iso) {
+  if (!iso) return "-";
+  const d = new Date(iso);
+  if (isNaN(d)) return iso;
+  return d.toLocaleString("id-ID", {
+    day: "2-digit", month: "short", year: "numeric",
+    hour: "2-digit", minute: "2-digit"
+  });
+}
+
+function escapeHtml(str) {
+  if (str === null || str === undefined) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+/* ----- Notifikasi inline ----- */
+function showAlert(elId, type, message, autoHide = true) {
+  const el = document.getElementById(elId);
+  if (!el) { alert(message); return; }
+  el.className = `alert alert-${type} show`;
+  el.textContent = message;
+  if (autoHide) {
+    setTimeout(() => el.classList.remove("show"), 6000);
+  }
+}
+
+/* ----- Kumpulkan nilai form menjadi objek ----- */
+function collectForm(formEl) {
+  const data = {};
+  const fd = new FormData(formEl);
+  for (const [key, value] of fd.entries()) {
+    if (data[key] !== undefined) {
+      // multiple values (checkbox group) -> array
+      if (!Array.isArray(data[key])) data[key] = [data[key]];
+      data[key].push(value);
+    } else {
+      data[key] = value;
+    }
+  }
+  // convert File objects to name string
+  for (const k in data) {
+    if (data[k] instanceof File) {
+      data[k] = data[k].name || "(file)";
+    }
+  }
+  return data;
+}
+
+/* ----- Kirim data ke Apps Script ----- */
+async function submitToSheet(formType, formData) {
+  const payload = {
+    formType: formType,
+    timestamp: new Date().toISOString(),
+    data: formData
+  };
+
+  // Jika URL belum diisi -> simpan ke localStorage sebagai fallback
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.startsWith("PASTE_URL")) {
+    console.warn("APPS_SCRIPT_URL belum diisi. Data disimpan ke localStorage (demo mode).");
+    const key = "pending_submissions";
+    const list = JSON.parse(localStorage.getItem(key) || "[]");
+    list.push(payload);
+    localStorage.setItem(key, JSON.stringify(list));
+    return { result: "success", mode: "demo", message: "Data tersimpan lokal (demo). Hubungkan Apps Script untuk sinkron spreadsheet." };
+  }
+
+  // Kirim via fetch (mode no-cors karena Apps Script web app)
+  const form = new FormData();
+  form.append("payload", JSON.stringify(payload));
+
+  const res = await fetch(APPS_SCRIPT_URL, {
+    method: "POST",
+    body: form,
+    mode: "no-cors" // Apps Script web app butuh no-cors untuk POST
+  });
+
+  // Karena no-cors, kita tidak bisa baca response body.
+  // Anggap sukses bila tidak throw.
+  return { result: "success", mode: "live", message: "Data berhasil dikirim ke spreadsheet." };
+}
+
+/* ----- Ambil semua submission (untuk admin) ----- */
+async function fetchAllSubmissions() {
+  // Demo mode: ambil dari localStorage
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.startsWith("PASTE_URL")) {
+    const list = JSON.parse(localStorage.getItem("pending_submissions") || "[]");
+    return list;
+  }
+
+  // Live mode: GET ke Apps Script (with-cors karena GET + Content-Type text)
+  const url = `${APPS_SCRIPT_URL}?action=list`;
+  try {
+    const res = await fetch(url, { method: "GET" });
+    const text = await res.text();
+    try { return JSON.parse(text); }
+    catch { return []; }
+  } catch (e) {
+    console.error("Fetch error:", e);
+    // fallback ke lokal
+    return JSON.parse(localStorage.getItem("pending_submissions") || "[]");
+  }
+}
+
+/* ----- Header aktif ----- */
+function setActiveNav() {
+  const path = location.pathname.split("/").pop() || "index.html";
+  $all(".site-header nav a").forEach(a => {
+    const href = a.getAttribute("href");
+    if (href === path) a.classList.add("active");
+  });
+}
+
+/* ----- Progress indicator auto-update saat scroll ke section ----- */
+function initProgress() {
+  const steps = $all(".form-progress .step");
+  if (steps.length === 0) return;
+  const sections = $all(".form-card-section");
+
+  if (sections.length === 0 || "IntersectionObserver" in window === false) return;
+
+  // map section -> step index (rata-rata)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = sections.indexOf(entry.target);
+        if (idx === -1) return;
+        steps.forEach((s, i) => {
+          s.classList.remove("active", "done");
+          if (i < idx) s.classList.add("done");
+          else if (i === idx) s.classList.add("active");
+        });
+      }
+    });
+  }, { rootMargin: "-30% 0px -60% 0px", threshold: 0 });
+
+  sections.forEach(s => io.observe(s));
+}
+
+document.addEventListener("DOMContentLoaded", setActiveNav);
+document.addEventListener("DOMContentLoaded", initProgress);
+
+</script>
+</body>
+</html>
